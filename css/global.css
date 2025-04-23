@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Lexend:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+.w-35 {
+    width: 35% !important;
+}
+
+.w-15 {
+    width: 15% !important;
+}
+
+.bg-color-default {
+    background-color: #f0f1f2 !important;
+}
+
+input {
+    padding: 10px !important;
+    text-align: center;
+}
+
+body {
+    font-family: "Lexend", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+}
+
+i {
+    height: 10px;
+    width: auto;
+}
