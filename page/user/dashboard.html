@@ -8,6 +8,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
   <link rel="stylesheet" href="../../css/global.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="../../css/dashboard.css">
 
 </head>
 <body class="bg-color-default">
@@ -18,11 +19,14 @@
 
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active text-white" href="#" aria-current="page">Trang chủ</a>
+          <li class="nav-item me-3">
+            <a class="nav-link active text-white" href="./dashboard.html" aria-current="page">Trang chủ</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="#"></a>
+          <li class="nav-item me-3">
+            <a class="nav-link text-danger" href="../admin/category-manager.html">Quản lý danh mục</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link text-danger" href="../admin/product-manager.html">Quản lý bài test</a>
           </li>
         </ul>
       </div>
@@ -35,10 +39,136 @@
     </div>
   </nav>
 
+  <div class="h-25 d-flex flex-column p-4 justify-content-center align-items-center" style="background-color: #BDB395">
+    <p class="m-auto fw-bold fs-3">Thử sức với câu đố ngẫu nhiên</p>
+    <button class="btn w-5 mt-3" style="background-color: #ff9c2b">Chơi</button>
+  </div>
 </header>
 
+<main>
+  <div class="container py-4 my-4">
+    <div class="d-flex w-100 mb-3">
+      <div class="dropdown">
+        <a class="btn dropdown-toggle border-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Sắp xếp theo
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Lượt chơi tăng dần</a></li>
+          <li><a class="dropdown-item" href="#">Lượt chơi giảm dần</a></li>
+        </ul>
+      </div>
+      <div class="d-flex w-100 justify-content-end align-items-center">
+        <input type="text" class="form-control w-25 me-3" placeholder="Tìm kiếm câu hỏi" aria-label="Search">
+        <button class="btn btn-primary" type="button" id="button-addon2"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-4">
+        <div class="card h-100 rounded-3 border-0 shadow" style="background-color: #fff2cf">
+          <img class="object-fit-cover rounded-top-3" style="height: 50%" src="https://ischool.vn/wp-content/uploads/2023/07/phuong-phap-hoc-toan-hieu-qua-thumb.jpeg" alt="">
+          <div class="card-body h-100 position-relative py-5">
+            <div class="rounded rounded-3 position-absolute w-85 p-3" style="background-color: #FFF8F0; top: -15%; left: 7%">
+              <div class="fs-5 fw-bold text-center m-0 p-0">Toán Rời Rạc</div>
+              <p class="card-text m-0">Danh mục: Toán</p>
+              <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px">15 câu hỏi</p>
+              <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px">2 lượt chơi</p>
+              <button class="btn d-flex m-auto btn-success">Chơi</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<footer class="py-3 my-4 d-flex" style="background-color: #212529">
+      <div class="col-4">
+        <div class="card h-100 rounded-3 border-0 shadow" style="background-color: #fff2cf">
+          <img class="object-fit-cover rounded-top-3" style="height: 50%" src="https://ischool.vn/wp-content/uploads/2023/07/phuong-phap-hoc-toan-hieu-qua-thumb.jpeg" alt="">
+          <div class="card-body h-100 position-relative py-5">
+            <div class="rounded rounded-3 position-absolute w-85 p-3" style="background-color: #FFF8F0; top: -15%; left: 7%">
+              <div class="fs-5 fw-bold text-center m-0 p-0">Toán Rời Rạc</div>
+              <p class="card-text m-0">Danh mục: Toán</p>
+              <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px">15 câu hỏi</p>
+              <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px">2 lượt chơi</p>
+              <button class="btn d-flex m-auto btn-success">Chơi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="card h-100 rounded-3 border-0 shadow" style="background-color: #fff2cf">
+          <img class="object-fit-cover rounded-top-3" style="height: 50%" src="https://ischool.vn/wp-content/uploads/2023/07/phuong-phap-hoc-toan-hieu-qua-thumb.jpeg" alt="">
+          <div class="card-body h-100 position-relative py-5">
+            <div class="rounded rounded-3 position-absolute w-85 p-3" style="background-color: #FFF8F0; top: -15%; left: 7%">
+              <div class="fs-5 fw-bold text-center m-0 p-0">Toán Rời Rạc</div>
+              <p class="card-text m-0">Danh mục: Toán</p>
+              <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px">15 câu hỏi</p>
+              <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px">2 lượt chơi</p>
+              <button class="btn d-flex m-auto btn-success">Chơi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-5">
+      <div class="col-4">
+        <div class="card h-100 rounded-3 border-0 shadow" style="background-color: #fff2cf">
+          <img class="object-fit-cover rounded-top-3" style="height: 50%" src="https://ischool.vn/wp-content/uploads/2023/07/phuong-phap-hoc-toan-hieu-qua-thumb.jpeg" alt="">
+          <div class="card-body h-100 position-relative py-5">
+            <div class="rounded rounded-3 position-absolute w-85 p-3" style="background-color: #FFF8F0; top: -15%; left: 7%">
+              <div class="fs-5 fw-bold text-center m-0 p-0">Toán Rời Rạc</div>
+              <p class="card-text m-0">Danh mục: Toán</p>
+              <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px">15 câu hỏi</p>
+              <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px">2 lượt chơi</p>
+              <button class="btn d-flex m-auto btn-success">Chơi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="card h-100 rounded-3 border-0 shadow" style="background-color: #fff2cf">
+          <img class="object-fit-cover rounded-top-3" style="height: 50%" src="https://ischool.vn/wp-content/uploads/2023/07/phuong-phap-hoc-toan-hieu-qua-thumb.jpeg" alt="">
+          <div class="card-body h-100 position-relative py-5">
+            <div class="rounded rounded-3 position-absolute w-85 p-3" style="background-color: #FFF8F0; top: -15%; left: 7%">
+              <div class="fs-5 fw-bold text-center m-0 p-0">Toán Rời Rạc</div>
+              <p class="card-text m-0">Danh mục: Toán</p>
+              <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px">15 câu hỏi</p>
+              <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px">2 lượt chơi</p>
+              <button class="btn d-flex m-auto btn-success">Chơi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="card h-100 rounded-3 border-0 shadow" style="background-color: #fff2cf">
+          <img class="object-fit-cover rounded-top-3" style="height: 50%" src="https://ischool.vn/wp-content/uploads/2023/07/phuong-phap-hoc-toan-hieu-qua-thumb.jpeg" alt="">
+          <div class="card-body h-100 position-relative py-5">
+            <div class="rounded rounded-3 position-absolute w-85 p-3" style="background-color: #FFF8F0; top: -15%; left: 7%">
+              <div class="fs-5 fw-bold text-center m-0 p-0">Toán Rời Rạc</div>
+              <p class="card-text m-0">Danh mục: Toán</p>
+              <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px">15 câu hỏi</p>
+              <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px">2 lượt chơi</p>
+              <button class="btn d-flex m-auto btn-success">Chơi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="d-flex justify-content-center align-items-center" style="color: #333333">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#" style="background-color: #F3A81C; color: #333333">&lt;</a></li>
+        <li class="page-item"><a class="page-link" href="#" style="background-color: #F3A81C; color: #333333">1</a></li>
+        <li class="page-item"><a class="page-link" href="#" style="background-color: #F3A81C; color: #333333">2</a></li>
+        <li class="page-item"><a class="page-link" href="#" style="background-color: #F3A81C; color: #333333">3</a></li>
+        <li class="page-item"><a class="page-link" href="#" style="background-color: #F3A81C; color: #333333">&gt;</a></li>
+      </ul>
+    </nav>
+  </div>
+</main>
+
+<footer class="py-3 mt-4 d-flex" style="background-color: #212529">
   <span class="text-white m-auto">© 2025 QuizForge. All rights reserved.</span>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>

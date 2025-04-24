@@ -1,1 +1,1 @@
-location.href = "./auth/register.html"
+location.href = "./page/user/dashboard.html";
