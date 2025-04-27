@@ -22,7 +22,7 @@
 
 input {
     padding: 10px !important;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 body {
@@ -37,4 +37,17 @@ a {
 i {
     height: 10px;
     width: auto;
+}
+
+header, footer {
+    background-color: #212529;
+}
+
+.page {
+    color: #333333;
+}
+
+.page .page-link {
+    background-color: #F3A81C;
+    color: #333333;
 }
