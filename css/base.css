@@ -4,6 +4,10 @@
     width: 85% !important;
 }
 
+.w-65 {
+    width: 65% !important;
+}
+
 .w-35 {
     width: 35% !important;
 }
@@ -14,6 +18,18 @@
 
 .w-5 {
     width: 5% !important;
+}
+
+.btn-cancel {
+    background-color: #d6d6d6 !important;
+    color: #212529; !important;
+    font-weight: bold;
+}
+
+.btn-confirm {
+    background-color: #F3A81C !important;
+    color: #212529 !important;
+    font-weight: bold;
 }
 
 .bg-color-default {

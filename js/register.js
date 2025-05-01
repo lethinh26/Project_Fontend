@@ -1,4 +1,4 @@
-let user = JSON.parse(localStorage.getItem('user'));
+let user = JSON.parse(localStorage.getItem('users'));
 
 let form = document.querySelector('#form');
 let input = form.querySelectorAll('input');
@@ -106,7 +106,7 @@ function registerPage() {
         password: passwordInput.value.trim(),
         role: "user"
     });
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('users', JSON.stringify(user));
     location.href = "./login.html";
 }
 

@@ -6,7 +6,7 @@
   <title>Login</title>
   <meta>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/register.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
@@ -27,6 +27,11 @@
           <div class="position-absolute z-1" onclick="seePass()" id="seePass"><i class="fa-regular fa-eye"></i></div>
         </div>
 
+        <div class="form-check mb-3 d-flex align-items-end">
+          <input type="checkbox" class="form-check-input me-2 rememberMe" id="remember" value="remember">
+          <label for="remember" class="form-check-label">Ghi nhớ tôi</label>
+        </div>
+
         <button class="btn btn-primary w-100 p-2" type="button" id="loginBtn" onclick="loginPage()">Đăng Nhập</button>
         <p class="text-center mt-3 m-0">Chưa có tài khoản? <a href="./register.html" class="text-decoration-none">Đăng ký</a></p>
       </form>
@@ -43,6 +48,8 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 <script src="../js/login.js"></script>
+
+
 </body>
 </html>
 
