@@ -67,3 +67,7 @@ header, footer {
     background-color: #F3A81C;
     color: #333333;
 }
+
+.toast {
+    z-index: 99999999 !important;
+}
