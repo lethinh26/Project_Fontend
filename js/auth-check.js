@@ -62,3 +62,14 @@ function authorizationUser() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    let role = userLocal ? userLocal.role : userSession ? userSession.role : null;
+    let currentPath = window.location.pathname;
+    if (currentPath.includes("admin")) {
+        if (role !== "admin") {
+            logoutBtn();
+            location.href="../../auth/login.html";
+        }
+    }
+})
+

@@ -69,5 +69,9 @@ header, footer {
 }
 
 .toast {
-    z-index: 99999999 !important;
+    z-index: 99999 !important;
+}
+
+.trash-btn {
+    z-index: 999999 !important;
 }

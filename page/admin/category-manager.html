@@ -15,7 +15,7 @@
 <header>
     <nav id="header"></nav>
 
-    <div class="h-25 p-4 justify-content-center align-items-center" style="background-color: #BDB395">
+    <div class="h-25 p-4 justify-content-center align-items-center" style="background-color: #BDB395" disabled="">
         <p class="m-auto fw-bold fs-2 text-center">Quản lý danh mục</p>
         <button type="button" class="btn mt-3 p-3 fw-bold d-flex m-auto" id="addNew" style="background-color: #ff9c2b" data-bs-toggle="modal" data-bs-target="#inputModal" onclick="processModal('add')">Thêm danh mục</button>
     </div>
@@ -38,11 +38,6 @@
 
     <nav class="d-flex justify-content-center align-items-center" style="color: #333333">
         <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="#" style="background-color: #F3A81C; color: #333333">&lt;</a></li>
-            <li class="page-item"><a class="page-link" href="#" style="background-color: #F3A81C; color: #333333">1</a></li>
-            <li class="page-item"><a class="page-link" href="#" style="background-color: #F3A81C; color: #333333">2</a></li>
-            <li class="page-item"><a class="page-link" href="#" style="background-color: #F3A81C; color: #333333">3</a></li>
-            <li class="page-item"><a class="page-link" href="#" style="background-color: #F3A81C; color: #333333">&gt;</a></li>
         </ul>
     </nav>
 </main>
@@ -89,6 +84,7 @@
         </div>
     </div>
 </div>
+
 <div id="loadToast" class="toast align-items-center bg-danger text-white position-fixed top-0 end-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
     <div class="d-flex">
         <div class="toast-body">

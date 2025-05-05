@@ -65,12 +65,79 @@ let test = [
                     },
                     {
                         content: "3",
+                        isCorrect: false
                     },
                     {
                         content: "4",
+                        isCorrect: false
                     },
                     {
                         content: "5",
+                        isCorrect: false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        id: 1,
+        testName: "Toán học nâng cao",
+        categoryId: 3,
+        playTime: 5,
+        playAmount: 1,
+        image: "../../assets/imgs/quizz-forge.png",
+        imageName: "Default Image",
+        questions: [
+            {
+                content: "1+1 = ?",
+                answers: [
+                    {
+                        content: "2",
+                        isCorrect: true
+                    },
+                    {
+                        content: "3",
+                        isCorrect: false
+                    },
+                    {
+                        content: "4",
+                        isCorrect: false
+                    },
+                    {
+                        content: "5",
+                        isCorrect: false
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        id: 1,
+        testName: "Toán học siêu cấp nâng cao",
+        categoryId: 3,
+        playTime: 5,
+        playAmount: 1,
+        image: "../../assets/imgs/quizz-forge.png",
+        imageName: "Default Image",
+        questions: [
+            {
+                content: "1+1 = ?",
+                answers: [
+                    {
+                        content: "2",
+                        isCorrect: true
+                    },
+                    {
+                        content: "3",
+                        isCorrect: false
+                    },
+                    {
+                        content: "4",
+                        isCorrect: false
+                    },
+                    {
+                        content: "5",
+                        isCorrect: false
                     }
                 ]
             }
