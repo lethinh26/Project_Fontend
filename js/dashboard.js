@@ -6,6 +6,14 @@ let filterTest = [...testList];
 let currentPage = 1;
 let item = 6;
 
+function randomTest() {
+    if (!checkLogin()) {
+        let currentTest = testList.length;
+        let random = Math.floor(Math.random() * currentTest) + 1;
+        location.href= `./test.html?idTest=${random}`
+    }
+}
+
 function renderData(list = filterTest) {
     let start = (currentPage-1) * item;
     let end = start + item;
@@ -20,7 +28,7 @@ function renderData(list = filterTest) {
               <p class="card-text m-0">Danh mục: ${categoryList.find((item) => item.id === test.categoryId).categoryName}</p>
               <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px"> ${test.questions.length} câu hỏi</p>
               <p class="card-text"><img src="../../assets/icons/gray_circle.png" alt="" style="width: 15px; height: 15px"> ${test.playAmount} lượt chơi</p>
-              <button class="btn d-flex m-auto btn-success">Chơi</button>
+              <button class="btn d-flex m-auto btn-success" onclick="if (!checkLogin()) location.href='./test.html?idTest=${test.id}'">Chơi</button>
             </div>
           </div>
         </div>
@@ -66,7 +74,6 @@ document.querySelector("#sortDecrease").addEventListener("click", () => {
     filterTest = filterTest.sort((a, b) => b.playAmount - a.playAmount);
     renderData();
 })
-
 
 
 renderData();

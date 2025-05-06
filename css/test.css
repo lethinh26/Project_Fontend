@@ -1,11 +1,16 @@
+.mt-6 {
+    margin-top: 5rem !important;
+}
+
 .hr {
+    margin-top: 30px;
     position: relative;
+
 }
 
 .hr hr {
     border: none;
     border-top: 1px solid #adadad;
-    margin: 0;
 }
 
 .hr p {
@@ -29,3 +34,4 @@ input[type="radio"] {
     width: 22%;
 }
 
+.

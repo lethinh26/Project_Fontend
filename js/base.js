@@ -17,11 +17,11 @@ function resetForm(form) {
 
 function checkValid(element, type, message, showMessage = true) {
     if (type === "text") {
-        const value = element.value;
-        const valid = value !== "" && value.length <= 30;
+        let value = element.value;
+        let valid = value !== "" && value.length <= 30;
 
         if (!valid) {
-            const errorMsg = value === "" ? `${message} không được để trống` : `${message} quá dài`;
+            let errorMsg = value === "" ? `${message} không được để trống` : `${message} quá dài`;
             showToast(element, false, errorMsg, showMessage);
         }
 
@@ -30,7 +30,7 @@ function checkValid(element, type, message, showMessage = true) {
     }
 
     if (type === "radio") {
-        const selected = Array.from(element).some(item => item.checked);
+        let selected = Array.from(element).some(item => item.checked);
 
         element.forEach(item => {
             showToast(item, selected, "", false);

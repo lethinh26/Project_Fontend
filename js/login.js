@@ -10,83 +10,61 @@ let rememberMe = document.querySelector('.rememberMe');
 
 let eye = document.querySelector('#seePass').querySelector('i');
 
-let toast = document.querySelector('#loadToast');
-let toastBody = document.querySelector('.toast-body');
-let toastBootstrap = new bootstrap.Toast(toast);
-
-let innerError = `<img src="../assets/icons/error.png" alt="" style="height: 25px"/> `;
-let innerSuccess = `<img src="../assets/icons/success.png" alt="" style="height: 25px"/> `;
-
-function checkValid() {
+function checkValidLogin() {
     let isValid = true;
-    toastBody.innerText = "";
-    toast.classList.remove("bg-danger", "bg-success");
-    let emailValid = false;
+    let showedToast = false;
 
-    input.forEach(item => {
-        item.classList.remove("is-valid", "is-invalid");
-
-        let value = item.value.trim();
-        if (item.id === "email") {
-            if (!value) {
-                toastBody.innerHTML += innerError + "Email không được để trống<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-            } else if (!item.checkValidity()) {
-                toastBody.innerHTML += innerError + "Email không hợp lệ<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-
-            }
-            else if (!user.some(i => i.email.toLowerCase() === value.toLowerCase())) {
-                toastBody.innerHTML += innerError + "Email hoặc mật khẩu không chính xác<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-            } else {
-                item.classList.add("is-valid");
-                emailValid = true;
-            }
-
-        }else if (item.id === "password" && emailValid) {
-            if (!value) {
-                toastBody.innerHTML += innerError + "Mật khẩu không được để trống<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-            } else if (user.find(i => i.email.toLowerCase() === emailInput.value.trim().toLowerCase()).password !== value) {
-                toastBody.innerHTML += innerError + "Email hoặc mật khấu không chính xác<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-            } else {
-                item.classList.add("is-valid");
-                return true;
-            }
-        }
-    });
-
-    if (!isValid) {
-        toast.classList.add("bg-danger");
-        toastBootstrap.show();
-        return false;
-    }else {
-        let role = user.find(i => i.email.toLowerCase() === emailInput.value.trim().toLowerCase()).role;
-        toast.classList.remove("bg-danger");
-        toast.classList.add("bg-success");
-        if (rememberMe.checked) {
-            localStorage.setItem('user', JSON.stringify({email: emailInput.value.trim().toLowerCase(), password: passwordInput.value.trim(), role}));
-        }else {
-            sessionStorage.setItem('user', JSON.stringify({email: emailInput.value.trim().toLowerCase(), password: passwordInput.value.trim(), role}));
-        }
-        toastBody.innerHTML = innerSuccess + "Đăng nhập thành công";
-        toastBootstrap.show();
-        return true;
+    if (!checkValid(emailInput, "text", "Email")) {
+        isValid = false;
+        showedToast = true;
+    } else if (!emailInput.checkValidity()) {
+        showToast(emailInput, false, "Email không hợp lệ", !showedToast);
+        isValid = false;
+        showedToast = true;
+    } else if (!user.some(u => u.email.toLowerCase() === emailInput.value.trim().toLowerCase())) {
+        showToast(emailInput, false, "Email hoặc mật khẩu không chính xác", !showedToast);
+        isValid = false;
+        showedToast = true;
+    } else {
+        showToast(emailInput, true, "", false);
     }
+
+    if (isValid) {
+        if (!checkValid(passwordInput, "text", "Mật khẩu", !showedToast)) {
+            isValid = false;
+        } else {
+            let checkUser = user.find(u => u.email.toLowerCase() === emailInput.value.trim().toLowerCase());
+            if (checkUser && checkUser.password !== passwordInput.value) {
+                showToast(passwordInput, false, "Email hoặc mật khẩu không chính xác", !showedToast);
+                isValid = false;
+            } else {
+                showToast(passwordInput, true, "", false);
+            }
+        }
+    }
+
+    if (isValid) {
+        let userValid = user.find(u => u.email.toLowerCase() === emailInput.value.trim().toLowerCase());
+        if (rememberMe.checked) {
+            localStorage.setItem("user", JSON.stringify({username: userValid.username, email: userValid.email, role: userValid.role}));
+        } else {
+            sessionStorage.setItem("user", JSON.stringify({username: userValid.username, email: userValid.email, role: userValid.role}));
+        }
+
+        showToast(null, true, "Đăng nhập thành công", true);
+    }
+    return isValid;
 }
 
+
+
 function loginPage() {
-    if (!checkValid()) {
+    if (!checkValidLogin()) {
         return;
     }
-    location.href = "../page/user/dashboard.html";
+    setTimeout(() => {
+        location.href = "../page/user/dashboard.html";
+    }, 1000);
 }
 
 function seePass() {

@@ -1,5 +1,5 @@
-let userLocal = JSON.parse(localStorage.getItem('user'));
-let userSession = JSON.parse(sessionStorage.getItem('user'));
+let userLocal = JSON.parse(localStorage.getItem('user')) || null;
+let userSession = JSON.parse(sessionStorage.getItem('user')) || null;
 
 let header = document.querySelector('#header');
 let footer = document.querySelector('footer');
@@ -73,3 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 })
 
+function checkLogin() {
+    if (userLocal === null && userSession === null) {
+        console.log("pass")
+        location.href="../../auth/login.html";
+    }
+    return userLocal === null && userSession === null;
+}

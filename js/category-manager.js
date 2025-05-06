@@ -6,16 +6,31 @@ let input = form.querySelectorAll('input');
 let inputName = document.querySelector("#inputName");
 let inputEmoji = document.querySelector("#inputEmoji");
 
-let toast = document.querySelector('#loadToast');
-let toastBody = document.querySelector('.toast-body');
-let toastBootstrap = new bootstrap.Toast(toast);
-
-let innerError = `<img src="../../assets/icons/error.png" alt="" style="height: 25px"/>`;
-let innerSuccess = `<img src="../../assets/icons/success.png" alt="" style="height: 25px"/>`;
-
 let currentPage = 1;
 let item = 5;
 let totalPages = Math.ceil(categoryList.length / item);
+
+
+function checkCateValid() {
+    let isValid = true;
+    let showedToast = false;
+
+    if (!checkValid(inputName, "text", "Tên danh mục", true)) {
+        isValid = false;
+        showedToast = true;
+    } else if (categoryList.some(cate =>
+        cate.categoryName.toLowerCase() === inputName.value.trim().toLowerCase() && cate.id != form.getAttribute("data-id"))) {
+        showToast(inputName, false, "Tên danh mục đã tồn tại", !showedToast);
+        isValid = false;
+        showedToast = true;
+    }
+
+    if (!checkValid(inputEmoji, "text", "Emoji", !showedToast)) {
+        isValid = false;
+    }
+
+    return isValid;
+}
 
 
 function renderData() {
@@ -29,15 +44,8 @@ function renderData() {
                 <th scope="row">${cate.id}</th>
                 <td>${cate.categoryEmoji} ${cate.categoryName}</td>
                 <td>
-                    <button class="btn btn-primary editBtn" 
-                      data-id="${cate.id}" 
-                      data-bs-toggle="modal" 
-                      data-bs-target="#inputModal" onclick="processModal('edit',this)">Sửa</button>
-
-                    <button class="btn btn-danger deleteBtn" 
-                      data-id="${cate.id}" 
-                      data-bs-toggle="modal"
-                      data-bs-target="#deleteModal" onclick="processModal('delete',this)">Xóa</button>
+                    <button class="btn btn-primary editBtn" data-id="${cate.id}" data-bs-toggle="modal" data-bs-target="#inputModal" onclick="processModal('edit',this)">Sửa</button>
+                    <button class="btn btn-danger deleteBtn" data-id="${cate.id}" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="processModal('delete',this)">Xóa</button>
                 </td>
             </tr>`, "");
     pagination();
@@ -77,90 +85,49 @@ function inputModal() {
 }
 
 function addBtn() {
-    let id = categoryList.length ? categoryList.length+1 : 1;
+    let id = categoryList.length ? categoryList.length + 1 : 1;
     let categoryName = inputName.value.trim();
     let categoryEmoji = inputEmoji.value.trim();
 
-    if (checkValid(categoryName, categoryEmoji)) {
-        categoryList.push({id, categoryName, categoryEmoji});
+    if (checkCateValid()) {
+        categoryList.push({ id, categoryName, categoryEmoji });
         localStorage.setItem("category", JSON.stringify(categoryList));
-        showToast("Thêm danh mục thành công");
+        showToast(null, true, "Thêm danh mục thành công", true);
         bootstrap.Modal.getInstance(document.getElementById('inputModal')).hide();
+        currentPage = 1;
+        renderData();
     }
-    renderData();
 }
+
+function editModal() {
+    let id = form.getAttribute("data-id");
+    let categoryName = inputName.value.trim();
+    let categoryEmoji = inputEmoji.value.trim();
+
+    if (checkCateValid()) {
+        let index = categoryList.findIndex(cate => cate.id == id);
+        categoryList[index] = { id, categoryName, categoryEmoji };
+        localStorage.setItem("category", JSON.stringify(categoryList));
+        showToast(null, true, "Sửa danh mục thành công", true);
+        bootstrap.Modal.getInstance(document.getElementById('inputModal')).hide();
+        renderData();
+    }
+}
+
 
 function deleteModal() {
     let id = document.querySelector('#deleteModal').getAttribute('data-id');
     categoryList = categoryList.filter(cate => cate.id != id);
     localStorage.setItem("category", JSON.stringify(categoryList));
     showToast("Xóa danh mục thành công");
+    currentPage = 1;
     renderData();
 }
 
-function editModal() {
-    let id = form.getAttribute('data-id');
-    let categoryName = inputName.value.trim();
-    let categoryEmoji = inputEmoji.value.trim();
-    if (checkValid(categoryName, categoryEmoji)) {
-        let index = categoryList.findIndex(cate => cate.id == id);
-        categoryList[index] = {id, categoryName, categoryEmoji};
-        localStorage.setItem("category", JSON.stringify(categoryList));
-        showToast("Sửa danh mục thành công");
-        bootstrap.Modal.getInstance(document.getElementById('inputModal')).hide();
-    }
-    renderData();
-}
-
-
-function checkValid(name, emoji) {
-    let isValid = true;
-    let currentId = form.getAttribute('data-id');
-
-    if (!name) {
-        showToast("Tên danh mục không được để trống", inputName, false);
-        isValid = false;
-
-
-    }else if (categoryList.some(cate => cate.categoryName.toLowerCase() === name.toLowerCase() && cate.id != currentId)) {
-        showToast("Tên danh mục đã tồn tại", inputName, false);
-        isValid = false;
-    } else {
-        showToast("", inputName, true);
-    }
-
-    if (!emoji) {
-        showToast("Emoji không được để trống", inputEmoji, false);
-        isValid = false;
-    } else {
-        showToast("", inputEmoji, true);
-    }
-
-    if (!isValid) toastBootstrap.show();
-    return isValid;
-}
-
-function showToast(message, inputElement = "", isValid = false) {
-    if (!inputElement && !isValid) {
-        toastBody.innerHTML += innerSuccess + message + "<br>";
-        toast.classList.add("bg-success");
-        toastBootstrap.show();
-        return;
-    }
-
-    if (isValid) {
-        inputElement.classList.add("is-valid");
-    } else {
-        inputElement.classList.add("is-invalid");
-        toastBody.innerHTML += innerError + message + "<br>";
-        toast.classList.add("bg-danger");
-    }
-}
 
 function pagination() {
     let pag = document.querySelector(".pagination");
-    pag.innerHTML = "";
-    pag.innerHTML += `<li class="page-item ${currentPage===1? 'disabled' : ''}" data-page=${currentPage-1}><a class="page-link" >&lt;</a></li>`;
+    pag.innerHTML = `<li class="page-item ${currentPage===1? 'disabled' : ''}" data-page=${currentPage-1}><a class="page-link" >&lt;</a></li>`;
     for (let i = 1; i <= totalPages; i++) {
         pag.innerHTML += `<li class="page-item ${currentPage===i? 'active' : ''}" data-page=${i}><a class="page-link" >${i}</a></li>`;
     }

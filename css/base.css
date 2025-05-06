@@ -20,6 +20,10 @@
     width: 5% !important;
 }
 
+.text-yellow {
+    color: #9C6B00 !important;
+}
+
 .btn-cancel {
     background-color: #d6d6d6 !important;
     color: #212529; !important;

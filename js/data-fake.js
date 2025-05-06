@@ -54,35 +54,283 @@ const test = [
         testName: "Toán học cơ bản",
         categoryId: 3,
         playTime: 5,
-        playAmount: 1,
+        playAmount: 30,
         image: "../../assets/imgs/quizz-forge.png",
         imageName: "Default Image",
         questions: [
             {
-                content: "1+1 = ?",
+                content: "1 + 1 = ?",
                 answers: [
-                    {
-                        content: "2",
-                        isCorrect: true
-                    },
-                    {
-                        content: "3",
-                        isCorrect: false
-                    },
-                    {
-                        content: "4",
-                        isCorrect: false
-                    },
-                    {
-                        content: "5",
-                        isCorrect: false
-                    }
+                    { content: "2", isCorrect: true },
+                    { content: "3", isCorrect: false },
+                    { content: "4", isCorrect: false },
+                    { content: "5", isCorrect: false }
                 ]
-            }
-        ]
+            },
+            {
+                content: "2 + 3 = ?",
+                answers: [
+                    { content: "5", isCorrect: true },
+                    { content: "4", isCorrect: false },
+                    { content: "6", isCorrect: false },
+                    { content: "7", isCorrect: false }
+                ]
+            },
+            {
+                content: "5 - 2 = ?",
+                answers: [
+                    { content: "3", isCorrect: true },
+                    { content: "2", isCorrect: false },
+                    { content: "4", isCorrect: false },
+                    { content: "1", isCorrect: false }
+                ]
+            },
+            {
+                content: "6 - 4 = ?",
+                answers: [
+                    { content: "2", isCorrect: true },
+                    { content: "3", isCorrect: false },
+                    { content: "1", isCorrect: false },
+                    { content: "4", isCorrect: false }
+                ]
+            },
+            {
+                content: "3 × 4 = ?",
+                answers: [
+                    { content: "12", isCorrect: true },
+                    { content: "7", isCorrect: false },
+                    { content: "9", isCorrect: false },
+                    { content: "14", isCorrect: false }
+                ]
+            },
+            {
+                content: "5 × 6 = ?",
+                answers: [
+                    { content: "30", isCorrect: true },
+                    { content: "28", isCorrect: false },
+                    { content: "35", isCorrect: false },
+                    { content: "32", isCorrect: false }
+                ]
+            },
+            {
+                content: "8 ÷ 2 = ?",
+                answers: [
+                    { content: "4", isCorrect: true },
+                    { content: "6", isCorrect: false },
+                    { content: "2", isCorrect: false },
+                    { content: "3", isCorrect: false }
+                ]
+            },
+            {
+                content: "9 ÷ 3 = ?",
+                answers: [
+                    { content: "3", isCorrect: true },
+                    { content: "2", isCorrect: false },
+                    { content: "4", isCorrect: false },
+                    { content: "1", isCorrect: false }
+                ]
+            },
+            {
+                content: "2³ = ?",
+                answers: [
+                    { content: "8", isCorrect: true },
+                    { content: "6", isCorrect: false },
+                    { content: "4", isCorrect: false },
+                    { content: "16", isCorrect: false }
+                ]
+            },
+            {
+                content: "3² = ?",
+                answers: [
+                    { content: "9", isCorrect: true },
+                    { content: "6", isCorrect: false },
+                    { content: "12", isCorrect: false },
+                    { content: "8", isCorrect: false }
+                ]
+            },
+            {
+                content: "√16 = ?",
+                answers: [
+                    { content: "4", isCorrect: true },
+                    { content: "2", isCorrect: false },
+                    { content: "8", isCorrect: false },
+                    { content: "16", isCorrect: false }
+                ]
+            },
+            {
+                content: "√81 = ?",
+                answers: [
+                    { content: "9", isCorrect: true },
+                    { content: "3", isCorrect: false },
+                    { content: "18", isCorrect: false },
+                    { content: "27", isCorrect: false }
+                ]
+            },
+            {
+                content: "10% của 200 = ?",
+                answers: [
+                    { content: "20", isCorrect: true },
+                    { content: "10", isCorrect: false },
+                    { content: "2", isCorrect: false },
+                    { content: "200", isCorrect: false }
+                ]
+            },
+            {
+                content: "25% của 80 = ?",
+                answers: [
+                    { content: "20", isCorrect: true },
+                    { content: "10", isCorrect: false },
+                    { content: "40", isCorrect: false },
+                    { content: "16", isCorrect: false }
+                ]
+            },
+            {
+                content: "5/8 + 3/8 = ?",
+                answers: [
+                    { content: "1", isCorrect: true },
+                    { content: "1/2", isCorrect: false },
+                    { content: "8/8", isCorrect: false },
+                    { content: "3/4", isCorrect: false }
+                ]
+            },
+            {
+                content: "1/2 + 1/4 = ?",
+                answers: [
+                    { content: "3/4", isCorrect: true },
+                    { content: "1/2", isCorrect: false },
+                    { content: "2/3", isCorrect: false },
+                    { content: "1", isCorrect: false }
+                ]
+            },
+            {
+                content: "0.5 + 0.25 = ?",
+                answers: [
+                    { content: "0.75", isCorrect: true },
+                    { content: "0.5", isCorrect: false },
+                    { content: "0.25", isCorrect: false },
+                    { content: "1", isCorrect: false }
+                ]
+            },
+            {
+                content: "1.2 × 3 = ?",
+                answers: [
+                    { content: "3.6", isCorrect: true },
+                    { content: "4.2", isCorrect: false },
+                    { content: "3", isCorrect: false },
+                    { content: "6", isCorrect: false }
+                ]
+            },
+            {
+                content: "15% của 60 = ?",
+                answers: [
+                    { content: "9", isCorrect: true },
+                    { content: "6", isCorrect: false },
+                    { content: "15", isCorrect: false },
+                    { content: "12", isCorrect: false }
+                ]
+            },
+            {
+                content: "LCM của 4 và 6 là bao nhiêu?",
+                answers: [
+                    { content: "12", isCorrect: true },
+                    { content: "8", isCorrect: false },
+                    { content: "24", isCorrect: false },
+                    { content: "10", isCorrect: false }
+                ]
+            },
+            {
+                content: "GCD của 8 và 12 là bao nhiêu?",
+                answers: [
+                    { content: "4", isCorrect: true },
+                    { content: "2", isCorrect: false },
+                    { content: "6", isCorrect: false },
+                    { content: "8", isCorrect: false }
+                ]
+            },
+            {
+                content: "Giá trị của x trong phương trình 2x + 3 = 7 là bao nhiêu?",
+                answers: [
+                    { content: "2", isCorrect: true },
+                    { content: "1", isCorrect: false },
+                    { content: "3", isCorrect: false },
+                    { content: "4", isCorrect: false }
+                ]
+            },
+            {
+                content: "Giải phương trình x² = 9, x = ?",
+                answers: [
+                    { content: "3 hoặc -3", isCorrect: true },
+                    { content: "3", isCorrect: false },
+                    { content: "-3", isCorrect: false },
+                    { content: "0", isCorrect: false }
+                ]
+            },
+            {
+                content: "Số nguyên tố tiếp theo sau 7 là số nào?",
+                answers: [
+                    { content: "11", isCorrect: true },
+                    { content: "9", isCorrect: false },
+                    { content: "10", isCorrect: false },
+                    { content: "13", isCorrect: false }
+                ]
+            },
+            {
+                content: "Tổng các góc trong tam giác là bao nhiêu độ?",
+                answers: [
+                    { content: "180", isCorrect: true },
+                    { content: "360", isCorrect: false },
+                    { content: "90", isCorrect: false },
+                    { content: "270", isCorrect: false }
+                ]
+            },
+            {
+                content: "Diện tích hình chữ nhật có chiều dài 5 và rộng 3 là bao nhiêu?",
+                answers: [
+                    { content: "15", isCorrect: true },
+                    { content: "8", isCorrect: false },
+                    { content: "10", isCorrect: false },
+                    { content: "20", isCorrect: false }
+                ]
+            },
+            {
+                content: "Chu vi hình vuông cạnh 4 là bao nhiêu?",
+                answers: [
+                    { content: "16", isCorrect: true },
+                    { content: "8", isCorrect: false },
+                    { content: "12", isCorrect: false },
+                    { content: "20", isCorrect: false }
+                ]
+            },
+            {
+                content: "Số thập phân 0.2 bằng phân số nào?",
+                answers: [
+                    { content: "1/5", isCorrect: true },
+                    { content: "2/5", isCorrect: false },
+                    { content: "1/2", isCorrect: false },
+                    { content: "2", isCorrect: false }
+                ]
+            },
+            {
+                content: "0.75 = phân số nào?",
+                answers: [
+                    { content: "3/4", isCorrect: true },
+                    { content: "1/4", isCorrect: false },
+                    { content: "75/100", isCorrect: false },
+                    { content: "4/3", isCorrect: false }
+                ]
+            },
+            {
+                content: "log₁₀(1000) bằng bao nhiêu?",
+                answers: [
+                    { content: "3", isCorrect: true },
+                    { content: "2", isCorrect: false },
+                    { content: "10", isCorrect: false },
+                    { content: "100", isCorrect: false }
+                ]
+            }]
     },
     {
-        id: 1,
+        id: 2,
         testName: "Toán học nâng cao",
         categoryId: 3,
         playTime: 5,
@@ -114,7 +362,7 @@ const test = [
         ]
     },
     {
-        id: 1,
+        id: 3,
         testName: "Toán học siêu cấp nâng cao",
         categoryId: 3,
         playTime: 5,
@@ -412,8 +660,7 @@ const test = [
                 ]
             }
         ]
-    },
-    // tiếp tục với id 12–15 nếu bạn muốn nhiều hơn
+    }
 ];
 
 

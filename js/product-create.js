@@ -4,7 +4,7 @@ let categoryList = JSON.parse(localStorage.getItem("category")) || [];
 let getUrl = new URLSearchParams(window.location.search);
 let mode = getUrl.get("mode");
 let isEdit = mode? true : false
-let testEdit = testList[Number(getUrl.get("id"))];
+let testEdit = testList.find(test => test.id === Number(getUrl.get("id")));
 let isEditImage = false;
 
 let questionList = isEdit? testEdit.questions : [];
@@ -197,7 +197,7 @@ function editModal(id) {
 
 function renderQuestions() {
     document.querySelector("#tbody").innerHTML = questionList.reduce((temp, ques, index) =>
-            temp + `
+        temp + `
         <tr>
             <th scope="row">${index + 1}</th>
             <td>${ques.content}</td>
@@ -233,39 +233,44 @@ function createTest() {
     if (isValid) {
         if (isEdit) {
             showToast(null, true, "Sửa bài test thành công");
-            if (isEditImage) {
-                let fileReader = new FileReader();
-                fileReader.readAsDataURL(image)
-                fileReader.onload = () => {
-                    testList[Number(getUrl.get("id"))] =
-                        {
-                            categoryId: Number(selectCategory.value.trim()),
-                            id: testList.length+1,
-                            playAmount: 0,
-                            playTime: Number(inputTime.value.trim()),
-                            questions: questionList,
-                            testName: inputTitle.value.trim(),
-                            image: fileReader.result,
-                            imageName: image.name
-                        };
-                    localStorage.setItem("test", JSON.stringify(testList));
 
-                }
-            }else {
-                testList[Number(getUrl.get("id"))] =
-                    {
-                        categoryId: Number(selectCategory.value.trim()),
+            const indexEdit = testList.findIndex(test => test.id === testEdit.id);
+            if (indexEdit === -1) {
+                showToast(null, false, "Không tìm thấy bài test để sửa");
+                return;
+            }
+
+            if (isEditImage && image) {
+                const fileReader = new FileReader();
+                fileReader.readAsDataURL(image);
+                fileReader.onload = () => {
+                    testList[indexEdit] = {
                         id: testEdit.id,
                         playAmount: testEdit.playAmount,
+                        categoryId: Number(selectCategory.value.trim()),
                         playTime: Number(inputTime.value.trim()),
                         questions: questionList,
                         testName: inputTitle.value.trim(),
-                        image,
-                        imageName
-                    }
+                        image: fileReader.result,
+                        imageName: image.name
+                    };
+                    localStorage.setItem("test", JSON.stringify(testList));
+                    location.href = "./product-manager.html";
+                };
+            } else {
+                testList[indexEdit] = {
+                    id: testEdit.id,
+                    playAmount: testEdit.playAmount,
+                    categoryId: Number(selectCategory.value.trim()),
+                    playTime: Number(inputTime.value.trim()),
+                    questions: questionList,
+                    testName: inputTitle.value.trim(),
+                    image: testEdit.image,
+                    imageName: imageName
+                };
                 localStorage.setItem("test", JSON.stringify(testList));
+                location.href = "./product-manager.html";
             }
-
         }else {
             showToast(null, true, "Tạo bài test thành công");
             if (!image) {

@@ -16,8 +16,8 @@ function renderData(list = filterList) {
       <td>${test.questions.length}</td>
       <td>${test.playTime}</td>
       <td>
-        <button class="btn btn-primary" onclick="location.href='./product-create.html?mode=edit&id=${index}'">Sửa</button>
-        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="document.querySelector('#deleteModal .btn-confirm').setAttribute('data-id', ${index})">Xóa</button>
+        <button class="btn btn-primary" onclick="location.href='./product-create.html?mode=edit&id=${test.id}'">Sửa</button>
+        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" onclick="document.querySelector('#deleteModal .btn-confirm').setAttribute('data-id', ${test.id})">Xóa</button>
       </td>
     </tr>
     `, "")
@@ -27,14 +27,17 @@ function renderData(list = filterList) {
 function searchTest() {
     let searchValue = document.querySelector('#searchInput').value.trim();
     filterList = testList.filter(test => test.testName.toLowerCase().includes(searchValue.toLowerCase()))
+    currentPage = 1;
     renderData(filterList)
 }
 
 
 function deleteModal(id) {
-    testList.splice(Number(id), 1);
+    testList.splice(testList.findIndex(item => item.id === Number(id)), 1);
+    filterList = [...testList];
     localStorage.setItem('test', JSON.stringify(testList));
     showToast(null, true, "Xóa thành công");
+    currentPage = 1;
     renderData();
 }
 

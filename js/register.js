@@ -10,93 +10,71 @@ let passwordInput = document.getElementById('password');
 
 let eye = document.querySelector('#seePass').querySelector('i');
 
-let toast = document.querySelector('#loadToast');
-let toastBody = document.querySelector('.toast-body');
-let toastBootstrap = new bootstrap.Toast(toast);
-
-let innerError = `<img src="../assets/icons/error.png" alt="" style="height: 25px"/> `;
-let innerSuccess = `<img src="../assets/icons/success.png" alt="" style="height: 25px"/> `;
-
-function checkValid() {
+function checkValidRegister() {
     let isValid = true;
-    toastBody.innerText = "";
-    toast.classList.remove("bg-danger", "bg-success");
+    let showedToast = false;
 
-    input.forEach(item => {
-        item.classList.remove("is-valid", "is-invalid");
-
-        let value = item.value.trim();
-        if (item.id === "username") {
-            if (!value) {
-                toastBody.innerHTML += innerError + "Tên đăng nhập không được để trống<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-            }else if (value.length < 6) {
-                toastBody.innerHTML += innerError + "Tên đăng nhập phải từ 6 ký tự trở lên<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-            } else {
-                item.classList.add("is-valid");
-            }
-
-        }else if (item.id === "email") {
-            if (!value) {
-                toastBody.innerHTML += innerError + "Email không được để trống<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-            } else if (!item.checkValidity()) {
-                toastBody.innerHTML += innerError + "Email không hợp lệ<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-            } else if (user.some(i => i.email.toLowerCase() === value.toLowerCase())) {
-                toastBody.innerHTML += innerError + "Email đã tồn tại<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-            } else {
-                item.classList.add("is-valid");
-            }
-        }else if (item.id === "password") {
-            if (!value) {
-                toastBody.innerHTML += innerError + "Mật khẩu không được để trống<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-            } else if (value.length < 6) {
-                toastBody.innerHTML += innerError + "Mật khẩu phải từ 6 ký tự trở lên<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-            } else {
-                item.classList.add("is-valid");
-            }
-        }else if (item.id === "passConfirm") {
-            if (!value) {
-                toastBody.innerHTML += innerError + "Xác nhận mật khẩu không được để trống<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-            } else if (value !== passwordInput.value.trim()) {
-                toastBody.innerHTML += innerError + "Mật khẩu không khớp<br>";
-                item.classList.add("is-invalid");
-                isValid = false;
-            } else {
-                item.classList.add("is-valid");
-            }
-        }
-    });
-
-    if (!isValid) {
-        toast.classList.add("bg-danger");
-        toastBootstrap.show();
-        return false;
-    }else {
-        toast.classList.remove("bg-danger");
-        toast.classList.add("bg-success");
-        toastBody.innerHTML = innerSuccess + "Đăng ký thành công";
-        toastBootstrap.show();
-        return true;
+    const username = usernameInput.value.trim();
+    if (!username) {
+        showToast(usernameInput, false, "Tên đăng nhập không được để trống", !showedToast);
+        isValid = false;
+        showedToast = true;
+    } else if (username.length < 6) {
+        showToast(usernameInput, false, "Tên đăng nhập phải từ 6 ký tự trở lên", !showedToast);
+        isValid = false;
+        showedToast = true;
+    } else {
+        showToast(usernameInput, true, "", false);
     }
+
+    const email = emailInput.value.trim();
+    if (!checkValid(emailInput, "text", "Email", !showedToast)) {
+        isValid = false;
+        showedToast = true;
+    } else if (!emailInput.checkValidity()) {
+        showToast(emailInput, false, "Email không hợp lệ", !showedToast);
+        isValid = false;
+        showedToast = true;
+    } else if (user.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+        showToast(emailInput, false, "Email đã tồn tại", !showedToast);
+        isValid = false;
+        showedToast = true;
+    } else {
+        showToast(emailInput, true, "", false);
+    }
+
+    const password = passwordInput.value.trim();
+    if (!checkValid(passwordInput, "text", "Mật khẩu", !showedToast)) {
+        isValid = false;
+        showedToast = true;
+    } else if (password.length < 6) {
+        showToast(passwordInput, false, "Mật khẩu phải từ 6 ký tự trở lên", !showedToast);
+        isValid = false;
+        showedToast = true;
+    } else {
+        showToast(passwordInput, true, "", false);
+    }
+
+    const confirmInput = document.getElementById('passConfirm');
+    const confirmPassword = confirmInput.value.trim();
+    if (!confirmPassword) {
+        showToast(confirmInput, false, "Xác nhận mật khẩu không được để trống", !showedToast);
+        isValid = false;
+    } else if (confirmPassword !== password) {
+        showToast(confirmInput, false, "Mật khẩu không khớp", !showedToast);
+        isValid = false;
+    } else {
+        showToast(confirmInput, true, "", false);
+    }
+    if (isValid) {
+        showToast(null, true, "Đăng ký thành công", true);
+    }
+    return isValid;
 }
 
+
 function registerPage() {
-    if (!checkValid()) {
+    if (!checkValidRegister()) {
         return;
     }
     user.push({
@@ -107,7 +85,9 @@ function registerPage() {
         role: "user"
     });
     localStorage.setItem('users', JSON.stringify(user));
-    location.href = "./login.html";
+    setTimeout(() => {
+        location.href = "./login.html";
+    }, 1000);
 }
 
 function seePass() {
