@@ -82,6 +82,9 @@ function submitTest() {
 
     let modal = new bootstrap.Modal(document.getElementById('btn-done'));
     modal.show();
+    let index = test.findIndex(item => item.id === idTest);
+    test[index].playAmount += 1;
+    localStorage.setItem('test', JSON.stringify(test));
     clearInterval(timer);
 }
 
